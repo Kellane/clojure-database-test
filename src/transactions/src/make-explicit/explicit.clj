@@ -1,11 +1,21 @@
-(ns clojure_database_test.transactions.explicit
+(ns transaction
   (:require
     [clojure.data.csv :as csv]
     [clojure.java.io :as io]
     [clojure.java.jdbc :as jdbc]
-    [clojure_database_test.transactions.connection :as conn]
   )
   (:gen-class))
+
+; http://clojure.github.io/java.jdbc/#clojure.java.jdbc.spec
+; previous link says auto-commit goes here
+(def dbspec-explicit {
+  :dbtype "postgresql"
+  :dbname "bd2"
+  :user "postgres"
+  :port 5432
+  :password ""
+  :auto-commit false
+})
 
 ; Get a row and db connection
 ; and performs a insert.
@@ -14,16 +24,16 @@
 )
 
 ; insert with transactions
-(defn insert_with_transaction [filename]
-  (jdbc/with-db-transaction [t-conn conn/dbspec-explicit]
+(defn insert_explicit [filename]
+  (jdbc/with-db-transaction [t-conn dbspec-explicit]
     (try
       (with-open [in-file (io/reader filename)]
         (doall
           (map #(insert %1, t-conn) (csv/read-csv in-file)))
       )
-      (println "Insert succeed :)")
+      (println "Insert explicit succeed :)")
       (catch Exception e
-        (println "Insert failed ;(")
+        (println "Insert explicit failed ;(")
         (throw e)
       )
     )
