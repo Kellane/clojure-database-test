@@ -4,12 +4,16 @@
             [clojure-database-test.transactions :as transactions])
   (:gen-class))
 
+(def dbspec-explicit {
+    :dbtype "postgresql"
+    :dbname "bd2"
+    :user "postgres"
+    :port 5432
+    :password ""
+    :auto-commit false})
+
 (defn -main
   "I don't do a whole lot ... yet."
   
   [& args]
-
-  (def file-name (nth args 0))
-
-  (with-open [file (io/reader file-name)]
-    (transactions/insert-implicit (doall (csv/read-csv file)))))
+)

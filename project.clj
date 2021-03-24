@@ -7,7 +7,7 @@
                  [org.clojure/java.jdbc "0.7.12"]
                  [org.clojure/data.csv "1.0.0"]
                  [org.postgresql/postgresql "42.2.19"]
-                 [clojure.java-time "0.3.2"]]  
+                 [clojure.java-time "0.3.2"]]
   :main ^:skip-aot clojure-database-test.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
