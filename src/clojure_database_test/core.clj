@@ -8,13 +8,12 @@
   (:gen-class))
 
 (def dbspec-explicit {
-  :dbtype "postgresql"
-  :dbname "bd2"
-  :user "postgres"
-  :port 5432
-  :password ""
-  :auto-commit false
-})
+    :dbtype "postgresql"
+    :dbname "bd2"
+    :user "postgres"
+    :port 5432
+    :password ""
+    :auto-commit false})
 
 (defn -main
   "I don't do a whole lot ... yet."
