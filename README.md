@@ -2,6 +2,12 @@
 
 FIXME: description
 
+## Setup database
+
+```
+sudo -u postgres psql -f setup.sql
+```
+
 ## Installation
 
 Download from http://example.com/FIXME.
