@@ -9,7 +9,10 @@
     [& args]
 
     (def file-name (nth args 0))
-    
+
+    ;; Clear database to prevent errors
+    (transactions/clean-db)
+
     ;; Measures time of file reading
     (def start-time (System/nanoTime))
 
@@ -23,19 +26,24 @@
     (def start-time (System/nanoTime))
 
     (with-open [file (io/reader file-name)]
-        (transactions/insert-implicit (doall (csv/read-csv file))))
+        (transactions/insert-implicit 
+            (doall (csv/read-csv file))))
 
     (def implicit-insertion-time
         (- (System/nanoTime) start-time))
+
+    ;; Clear database to prevent errors
+    (transactions/clean-db)
 
     ;; Performs explicit insertions and measures time
     (def start-time (System/nanoTime))
 
     (with-open [file (io/reader file-name)]
-        (transactions/insert-explicit (doall (csv/read-csv file))))
+        (transactions/insert-explicit 
+            (doall (csv/read-csv file))))
 
     (def explicit-insertion-time
         (- (System/nanoTime) start-time))
 
-    (println "Implicit: " (/ implicit-insertion-time 1000000000.0) " sec")
-    (println "Explicit: " (/ explicit-insertion-time 1000000000.0) " sec"))
+    (println "Implicit:" (/ implicit-insertion-time 1000000000.0) "sec")
+    (println "Explicit:" (/ explicit-insertion-time 1000000000.0) "sec"))
