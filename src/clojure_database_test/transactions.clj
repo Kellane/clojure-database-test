@@ -9,14 +9,10 @@
 )
 
 (defn insert-explicit [data, dbspec]
-  (jdbc/with-db-transaction [t-conn dbspec]
-    (try
-      (doseq [row data]
-        (insert row t-conn)
-      )
-      (catch Exception e
-        (throw e)
-      )
-    )
-  )
-)
+    (jdbc/with-db-transaction [t-conn dbspec]
+        (try
+            (doseq [row data]
+                (insert row t-conn))
+            
+            (catch Exception e
+                (throw e)))))
