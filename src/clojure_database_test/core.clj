@@ -22,7 +22,7 @@
     (def file-reading-time
         (- (System/nanoTime) start-time))
 
-    (println (/ file-reading-time 1000000000.0))
+    ;; (println (/ file-reading-time 1000000000.0))
 
     ;; Performs implicit insertions and measures time
     (def start-time (System/nanoTime))
@@ -42,7 +42,7 @@
     (def explicit-insertion-time
         (- (System/nanoTime) start-time))
 
-    (println (/ implicit-insertion-time 1000000000.0))
-    (println (/ explicit-insertion-time 1000000000.0))
+    (println "Implicit: " (/ implicit-insertion-time 1000000000.0) " sec")
+    (println "Explicit: " (/ explicit-insertion-time 1000000000.0) " sec")
 
     )

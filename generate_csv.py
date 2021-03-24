@@ -8,13 +8,21 @@ Execute:
 import csv
 import sys
 
-n = sys.argv[1]
+# n = sys.argv[1]
+eid = 0
 
-with open("data.csv", "w") as data_file:
-    csv_writer = csv.writer(data_file)
+with open("/tmp/data.csv", "r") as src_file:
+    with open("data.csv", "w") as data_file:
+        csv_writer = csv.writer(data_file)
+        csv_reader = csv.reader(src_file)
 
-    for i in range(int(n)):
-        csv_writer.writerow([
-            i,
-            "Eu exercitation excepteur ut aute anim velit ex ullamco ad quis.",
-        ])
+
+        skip_header = True
+        for row in csv_reader:
+            if skip_header:
+                skip_header = False
+                continue
+
+            print(row[0])
+            csv_writer.writerow([eid, str(row[0])])
+            eid += 1
