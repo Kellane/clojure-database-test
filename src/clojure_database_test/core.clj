@@ -9,9 +9,6 @@
     [& args]
 
     (def file-name (nth args 0))
-    ;; (def file-reading-time 0.0)
-    ;; (def implicit-insertion-time 0.0)
-    (def explicit-insertion-time 0.0)
     
     ;; Measures time of file reading
     (def start-time (System/nanoTime))
@@ -21,8 +18,6 @@
 
     (def file-reading-time
         (- (System/nanoTime) start-time))
-
-    ;; (println (/ file-reading-time 1000000000.0))
 
     ;; Performs implicit insertions and measures time
     (def start-time (System/nanoTime))
@@ -43,6 +38,4 @@
         (- (System/nanoTime) start-time))
 
     (println "Implicit: " (/ implicit-insertion-time 1000000000.0) " sec")
-    (println "Explicit: " (/ explicit-insertion-time 1000000000.0) " sec")
-
-    )
+    (println "Explicit: " (/ explicit-insertion-time 1000000000.0) " sec"))
