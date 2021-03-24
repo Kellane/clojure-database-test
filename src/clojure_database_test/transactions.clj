@@ -5,8 +5,7 @@
   (:gen-class))
 
 (defn insert [row, t-conn]
-  (jdbc/insert! t-conn :product {:eid (Integer. (get row 0)) :description (get row 1)})
-)
+    (jdbc/insert! t-conn :product {:eid (Integer. (get row 0)) :description (get row 1)}))
 
 (defn insert-explicit [data, dbspec]
     (jdbc/with-db-transaction [t-conn dbspec]
