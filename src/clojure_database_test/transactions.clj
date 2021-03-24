@@ -6,13 +6,17 @@
 
     (def postgres-db {
       :dbtype "postgresql"
-      :dbname "bd2"
-      :port "5432"
+      :dbname "db2"
+      :port 5432
       :user "postgres"
-      :password ""})
+      :password "123"})
       
-      (doseq [line data]
-        (println line))
+      (doseq [row data]
+        (def eid (get row 0))
+        (def description (get row 1))
+       
+        (sql/insert! postgres-db
+            :product {:eid (Integer. eid) :description description}))
 
       )
 
