@@ -12,3 +12,4 @@ CREATE TABLE product (
 );
 
 GRANT ALL PRIVILEGES ON product TO clojure_user;
+

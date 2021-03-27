@@ -36,7 +36,7 @@
             (insert [eid description] dbspec-implicit))
 
         (catch Exception e
-            (throw e))))
+            (constantly nil))))
 
 (defn insert-explicit
     "Inserts every row from data into a database, using
@@ -52,7 +52,7 @@
                 (insert [eid description] db-connection))
 
             (catch Exception e
-                (throw e)))))
+                (constantly nil)))))
 
 (defn clean-db
     "Clears database."
